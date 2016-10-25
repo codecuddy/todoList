@@ -28,19 +28,31 @@ var todoList = {
       }
     });
     
-    //*** NEW WAY If everything is true, make everything false. (forEach vs for)
-    if (completedTodos === totalTodos) {
-      this.todos.forEach(function(todo) {
-        todo.completed = false; 
-      });
-    
-    //*** NEW WAY Otherwise, make everything true. (forEach vs for)
-    } else {
-      this.todos.forEach(function(todo) {
+    this.todos.forEach(function(todo) {
+      //*** BEST If evertyhing is true, make everything false
+      if (completedTodos === totalTodos) {
+        todo.completed = false;
+        
+      //*** BEST otherwise make everything true
+      } else {
         todo.completed = true;
-      });
-    }
+      }
+    }); 
   }
+    
+      //   *** NEW WAY If everything is true, make everything false. (forEach vs for)
+      // if (completedTodos === totalTodos) {
+      //   this.todos.forEach(function(todo) {
+      //     todo.completed = false; 
+      //   });
+    
+      //   *** NEW WAY Otherwise, make everything true. (forEach vs for)
+      // } else {
+      //   this.todos.forEach(function(todo) {
+      //     todo.completed = true;
+      //   });
+      // }
+  
   
     //*** OLD WAY: Get number of completed todos
     //for (var i = 0; i < totalTodos; i++) {
