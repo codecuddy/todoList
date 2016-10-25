@@ -40,7 +40,11 @@ var todoList = {
     }); 
   }
     
-      //   *** NEWER WAY If everything is true, make everything false. (forEach vs for)
+    //   *** NEWER WAY If everything is true, make everything false. (forEach vs for)
+    //     toggleAll: function() {
+    //        var totalTodos = this.todos.length;
+    //        var completedTodos = 0;
+    
       // if (completedTodos === totalTodos) {
       //   this.todos.forEach(function(todo) {
       //     todo.completed = false; 
@@ -55,11 +59,14 @@ var todoList = {
   
   
       //*** OLD WAY: Get number of completed todos
-      //for (var i = 0; i < totalTodos; i++) {
-      //  if (this.todos[i].completed === true) {
-      //    completedTodos++;
+      //     toggleAll: function() {
+      //        var totalTodos = this.todos.length;
+      //        var completedTodos = 0;
+      //  for (var i = 0; i < totalTodos; i++) {
+      //    if (this.todos[i].completed === true) {
+      //      completedTodos++;
+      //    }
       //  }
-      // }
     
       //*** OLD WAY If everything is true, make everything false
       //if (completedTodos === totalTodos) {
