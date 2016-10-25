@@ -40,13 +40,13 @@ var todoList = {
     }); 
   }
     
-      //   *** NEW WAY If everything is true, make everything false. (forEach vs for)
+      //   *** NEWER WAY If everything is true, make everything false. (forEach vs for)
       // if (completedTodos === totalTodos) {
       //   this.todos.forEach(function(todo) {
       //     todo.completed = false; 
       //   });
     
-      //   *** NEW WAY Otherwise, make everything true. (forEach vs for)
+      //   *** NEWER WAY Otherwise, make everything true. (forEach vs for)
       // } else {
       //   this.todos.forEach(function(todo) {
       //     todo.completed = true;
@@ -54,24 +54,24 @@ var todoList = {
       // }
   
   
-    //*** OLD WAY: Get number of completed todos
-    //for (var i = 0; i < totalTodos; i++) {
-    //  if (this.todos[i].completed === true) {
-    //    completedTodos++;
-    //  }
-    // }
+      //*** OLD WAY: Get number of completed todos
+      //for (var i = 0; i < totalTodos; i++) {
+      //  if (this.todos[i].completed === true) {
+      //    completedTodos++;
+      //  }
+      // }
     
-    //*** OLD WAY If everything is true, make everything false
-    //if (completedTodos === totalTodos) {
-    //  for (var i = 0; i < totalTodos; i++) {
-    //    this.todos[i].completed = false;
-    //  }
+      //*** OLD WAY If everything is true, make everything false
+      //if (completedTodos === totalTodos) {
+      //  for (var i = 0; i < totalTodos; i++) {
+      //    this.todos[i].completed = false;
+      //  }
 
-    //*** OLD WAY Otherwise, make everything true.   
-    // } else {
-    //  for (var i = 0; i < totalTodos; i++) {
-    //    this.todos[i].completed = true;
-    //  }
+      //*** OLD WAY Otherwise, make everything true.   
+      // } else {
+      //  for (var i = 0; i < totalTodos; i++) {
+      //    this.todos[i].completed = true;
+      //  }
 };
 
 var handlers = {
@@ -109,9 +109,13 @@ var view = {
   displayTodos: function() {
     var todosUl = document.querySelector('ul');
     todosUl.innerHTML = '';
-    for (var i = 0; i < todoList.todos.length; i++) {
+    
+    // this //refers to the view object, not the forEach
+    // forEach(callback, this)  <--- this is why there is a this 'at the end' 
+    //                              its not the end its just after the callback
+  
+    todoList.todos.forEach(function(todo, position) {
       var todoLi = document.createElement('li');
-      var todo = todoList.todos[i];
       var todoTextWithCompletion = '';
       
       if (todo.completed === true) {
@@ -119,12 +123,29 @@ var view = {
       } else {
         todoTextWithCompletion = '[_] ' + todo.todoText;
       }
-      
-      todoLi.id = i;
+      todoLi.id = position;
       todoLi.textContent = todoTextWithCompletion;
       todoLi.appendChild(this.createDeleteButton());
       todosUl.appendChild(todoLi);
-    }
+    }, this);
+   
+      // *** OLD WAY using for loop instead of forEach like above
+      // for (var i = 0; i < todoList.todos.length; i++) {
+      //   var todoLi = document.createElement('li');
+      //   var todo = todoList.todos[i];
+      //   var todoTextWithCompletion = '';
+        
+      //   if (todo.completed === true) {
+      //     todoTextWithCompletion = '[x] ' + todo.todoText;
+      //   } else {
+      //     todoTextWithCompletion = '[_] ' + todo.todoText;
+      //   }
+      
+      //   todoLi.id = i;
+      //   todoLi.textContent = todoTextWithCompletion;
+      //   todoLi.appendChild(this.createDeleteButton());
+      //   todosUl.appendChild(todoLi);
+      // } 
   },
   
   createDeleteButton: function() {
