@@ -137,6 +137,10 @@ var view = {
     }, this);
    
       // *** OLD WAY using for loop instead of forEach like above
+      
+      //  displayTodos: function() {
+      //      var todosUl = document.querySelector('ul');
+      //        todosUl.innerHTML = '';
       // for (var i = 0; i < todoList.todos.length; i++) {
       //   var todoLi = document.createElement('li');
       //   var todo = todoList.todos[i];
