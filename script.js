@@ -3,7 +3,7 @@ var todoList = {
   addTodo: function(todoText) {
     this.todos.push({
       todoText: todoText,   //first is property, second is param
-      completed: false
+      completed: false,
     });
   },
   changeTodo: function(position, todoText) {
@@ -84,9 +84,13 @@ var todoList = {
 var handlers = {
   addTodo: function() {
     var addTodoTextInput = document.getElementById('addTodoTextInput');
-    todoList.addTodo(addTodoTextInput.value);
-    addTodoTextInput.value = '';
-    view.displayTodos();
+    if(addTodoTextInput.value !== '') {
+      todoList.addTodo(addTodoTextInput.value);
+      addTodoTextInput.value = '';
+      view.displayTodos();
+    } else {
+      alert("You Must Enter a To-Do");
+    }
   },
   changeTodo: function() {
     var changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
